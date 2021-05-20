@@ -3,7 +3,7 @@
 ## Table of Contents
 
 -   [Instructions](#instructions)
--   [methods That I used](#methods That I usedr)
+-   [methods](#methods)
 
 ## Instructions
 
