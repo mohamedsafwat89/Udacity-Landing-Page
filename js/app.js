@@ -1,80 +1,48 @@
-/**
- *
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- *
- * Dependencies: None
- *
- * JS Version: ES2015/ES6
- *
- * JS Standard: ESlint
- *
- */
-
-/**
- * Define Global Variables
- *
- */
 const navItems = Array.from(document.getElementsByTagName('section')); // to get all sections in An Array
 let numSections = navItems.length;
 
 const menu = document.querySelector('#navbar__list');
 
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
-
 // To creat Navbar list
-function creatList() {
+(function creatList() {
 	navItems.forEach((section) => {
 		let secName = section.getAttribute('data-nav'); // to get section name
 		let target = section.getAttribute('id'); // to great target
 		let item = document.createElement('li');
-		item.innerHTML = `<a href="#${target}" class="menu__link">${secName}</a>`;
-
+		item.innerHTML = `<a href="#${target}" data-link="${target}" class="menu__link">${secName}</a>`;
 		menu.appendChild(item);
 	});
-}
+})();
+
+// to remove all active class
+const removeActiveClass = () => {
+	document.querySelectorAll('section').forEach((el) => {
+		el.classList.remove('your-active-class');
+	});
+};
 
 // to set Active class
 const toggleActive = () => {
 	navItems.forEach((section) => {
-		let view = section.getBoundingClientRect();
-		if (view.top >= 0 && view.top <= 300) {
-			section.classList.toggle('your-active-class');
+		let scrollPosition = document.documentElement.scrollTop;
+		if (
+			scrollPosition >= section.offsetTop - section.offsetTop * 0.15 &&
+			scrollPosition < section.offsetTop + section.offsetHeight
+		) {
+			removeActiveClass();
+			section.classList.add('your-active-class');
 		}
 	});
 };
 
-// Invoke function
-creatList();
-
+const links = document.querySelectorAll('.menu__link');
+links.forEach((link) => {
+	link.addEventListener('click', (event) => {
+		event.preventDefault();
+		if (event.target.dataset.link) {
+			document.getElementById(`${event.target.dataset.link}`).scrollIntoView({ behavior: 'smooth' });
+		}
+	});
+});
 //make scroll event
 window.addEventListener('scroll', toggleActive);
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
-
-// Add class 'active' to section when near top of viewport
-
-// Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
