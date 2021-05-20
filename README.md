@@ -14,7 +14,8 @@ To get started, open `js/app.js` and start building out the app's functionality
 ## Methods
 
 I used :
-  Element.srcollIntoView() To make scroll smooth and dynamic
+  Element.scrollIntoView() To make scroll smooth and dynamic 
+  
   Event.preventDefault()
 
 
