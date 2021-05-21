@@ -7,7 +7,7 @@
 
 ## Instructions
 
-First project with Udacity . It's about convert this project from a static project to an interactive one.
+First project with Udacity . It's about converting this project from a static project to an interactive one.
 
 To get started, open `js/app.js` and start building out the app's functionality.
 I prefer to Run this project on google chrome
