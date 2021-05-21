@@ -1,6 +1,5 @@
 const navItems = Array.from(document.getElementsByTagName('section')); // to get all sections in An Array
 let numSections = navItems.length;
-
 const menu = document.querySelector('#navbar__list');
 
 // To creat Navbar list
@@ -14,6 +13,18 @@ const menu = document.querySelector('#navbar__list');
 	});
 })();
 
+const links = document.querySelectorAll('.menu__link');
+const li = menu.querySelectorAll('li');
+
+const makeNavActive = () => {
+	let activeSection = document.querySelector('.your-active-class');
+	let sectionId = activeSection.getAttribute('id');
+	let aItem = document.querySelector(`[data-link="${sectionId}"]`);
+	document.querySelectorAll('.active').forEach((el) => {
+		el.classList.remove('active');
+	});
+	aItem.classList.add('active');
+};
 // to remove all active class
 const removeActiveClass = () => {
 	document.querySelectorAll('section').forEach((el) => {
@@ -21,7 +32,7 @@ const removeActiveClass = () => {
 	});
 };
 
-// to set Active class
+// to set Active class to section
 const toggleActive = () => {
 	navItems.forEach((section) => {
 		let scrollPosition = document.documentElement.scrollTop;
@@ -35,7 +46,6 @@ const toggleActive = () => {
 	});
 };
 
-const links = document.querySelectorAll('.menu__link');
 links.forEach((link) => {
 	link.addEventListener('click', (event) => {
 		event.preventDefault();
@@ -45,4 +55,8 @@ links.forEach((link) => {
 	});
 });
 //make scroll event
-window.addEventListener('scroll', toggleActive);
+window.addEventListener('scroll', (event) => {
+	event.preventDefault();
+	toggleActive();
+	makeNavActive();
+});

@@ -90,6 +90,11 @@ section {
 	color: #fff;
 	transition: ease 0.3s all;
 }
+.active {
+	background: rgb(57, 166, 255);
+	color: #fff;
+	transition: ease 0.3s all;
+}
 
 /* Header Styles */
 .page__header {
